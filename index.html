@@ -10,6 +10,10 @@
     <script>
         const ws = new WebSocket('ws://127.0.0.1:8080')
 
+        ws.onopen = () => {
+            console.log("Websocket connection opened succesfully.")
+        }
+
         ws.onmessage = (msg) => {
             const dataArray = msg.data.split(",", 3)
                       color = dataArray[0]
