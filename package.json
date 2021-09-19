@@ -1,0 +1,30 @@
+{
+  "name": "irc_twitch_obs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManuCoding11/IRC_Twitch_OBS.git"
+  },
+  "author": "ManuCoding11",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ManuCoding11/IRC_Twitch_OBS/issues"
+  },
+  "homepage": "https://github.com/ManuCoding11/IRC_Twitch_OBS#readme",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.9.1",
+    "@types/ws": "^7.4.7",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "tmi.js": "^1.8.5"
+  },
+  "devDependencies": {
+    "@types/tmi.js": "^1.7.2"
+  }
+}
