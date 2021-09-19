@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <chat></chat>
+
+    <script>
+        const ws = new WebSocket('ws://127.0.0.1:8080')
+
+        ws.onmessage = (msg) => {
+            const dataArray = msg.data.split(",", 3)
+                      color = dataArray[0]
+                       name = dataArray[1]
+                    message = dataArray[2]
+
+            console.log(color + ', ' + name + ';\n' + message)
+
+        }
+    </script>
+</body>
+</html>
+
+<!-- TODO
+     * Implement message display
+     * Add styling
+     * Comment JS
+-->
