@@ -8,20 +8,50 @@
     <chat></chat>
 
     <script>
-        const ws = new WebSocket('ws://127.0.0.1:8080')
+        const ws = new WebSocket('ws://127.0.0.1:8080'),
+              totalMessageCount = 8
+
+        let messageCount = 0,
+            chat = document.querySelector('chat')
+
+
 
         ws.onopen = () => {
             console.log("Websocket connection opened succesfully.")
         }
 
+        ws.close = () => {
+            console.warn("Websocket connection closed.")
+        }
+
+
         ws.onmessage = (msg) => {
-            const dataArray = msg.data.split(",", 3)
-                      color = dataArray[0]
-                       name = dataArray[1]
+            const dataArray = msg.data.split(",", 3),
+                      color = dataArray[0],
+                       name = dataArray[1],
                     message = dataArray[2]
 
-            console.log(color + ', ' + name + ';\n' + message)
+            const currentChatString = chat.innerHTML ?? "",
+                  messages = currentChatString.split('<br>')
 
+            
+            if (messageCount >= totalMessageCount) {
+                chat.innerHTML =
+                    messages
+                    .slice(1)
+                    .map(value => value + '<br>')
+                    .toString()
+                    + `<span style="color: ${color}">${name}</span>: ${message}<br>`
+
+            } else {
+                chat.innerHTML =
+                    currentChatString
+                    + `<span style="color: ${color}">${name}</span>: ${message}<br>`
+                
+                messageCount ++
+            }
+
+            console.log(`${name}: ${message}`)
         }
     </script>
 </body>
