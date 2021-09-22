@@ -11,8 +11,7 @@
         const ws = new WebSocket('ws://127.0.0.1:8080'),
               totalMessageCount = 8
 
-        let messageCount = 0,
-            chat = document.querySelector('chat')
+        let chat = document.querySelector('chat')
 
 
 
@@ -20,36 +19,27 @@
             console.log("Websocket connection opened succesfully.")
         }
 
-        ws.close = () => {
+        ws.onclose = () => {
             console.warn("Websocket connection closed.")
         }
 
 
         ws.onmessage = (msg) => {
             const dataArray = msg.data.split(",", 3),
-                      color = dataArray[0],
+                      color = dataArray[0] ?? "#cccccc",
                        name = dataArray[1],
                     message = dataArray[2]
 
-            const currentChatString = chat.innerHTML ?? "",
-                  messages = currentChatString.split('<br>')
+            let line = document.createElement('span')
+            line.innerHTML = `<span style="color: ${color}">${name}</span>: ${message}<br>`
 
-            
-            if (messageCount >= totalMessageCount) {
-                chat.innerHTML =
-                    messages
-                    .slice(1)
-                    .map(value => value + '<br>')
-                    .join('')
-                    + `<span style="color: ${color}">${name}</span>: ${message}<br>`
 
-            } else {
-                chat.innerHTML =
-                    currentChatString
-                    + `<span style="color: ${color}">${name}</span>: ${message}<br>`
-                
-                messageCount ++
+            if (chat.childElementCount > totalMessageCount) {
+                chat.removeChild(chat.firstChild)
             }
+
+            chat.appendChild(line)
+
 
             console.log(`${name}: ${message}`)
         }
