@@ -40,7 +40,7 @@
                     messages
                     .slice(1)
                     .map(value => value + '<br>')
-                    .toString()
+                    .join('')
                     + `<span style="color: ${color}">${name}</span>: ${message}<br>`
 
             } else {
