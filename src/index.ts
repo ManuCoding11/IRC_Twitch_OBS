@@ -36,7 +36,7 @@ const ws_server: WebSocket.Server = new WebSocket.Server(
 
 const tmiClient: tmi.Client = new tmi.Client(
     {
-        channels: CHANNELS.split(',')
+        channels: CHANNELS.split(/, */)
     }
 )
 
