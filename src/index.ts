@@ -62,6 +62,7 @@ ws_server.on("connection",
 
 process.on("uncaughtException", (error: Error) => {
     console.log(error)
+    ws_server.close()
     process.exit(1)
 })
 
