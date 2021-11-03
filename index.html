@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
 <body>
     <chat></chat>
@@ -26,7 +32,7 @@
 
         ws.onmessage = (msg) => {
             const dataArray = msg.data.split(",", 3),
-                      color = dataArray[0] ?? "#cccccc",
+                      color = dataArray[0],
                        name = dataArray[1],
                     message = dataArray[2]
 
@@ -48,7 +54,6 @@
 </html>
 
 <!-- TODO
-     * Implement message display
      * Add styling
      * Comment JS
 -->
